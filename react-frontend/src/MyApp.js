@@ -17,9 +17,12 @@ function MyApp() {
   <div className="container">
     <Table characterData={characters} 
 	    removeCharacter={removeOneCharacter} />
-    <Form />
+    <Form handleSubmit={updateList} />
   </div>
 )
+  function updateList(person) {
+    setCharacters([...characters, person]);
+}
 }
 
 export default MyApp;
