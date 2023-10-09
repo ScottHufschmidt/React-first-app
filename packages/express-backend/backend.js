@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors";
 const app = express();
 const port = 8000;
 
@@ -57,6 +57,7 @@ const removeUser = (user) => {
 	return user;
 }
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -89,19 +90,6 @@ app.get('/users/:id', (req, res) => {
     } else {
         res.send(result);
     }
-});
-
-app.get('/users', (req, res) => {
-	const name = req.query.name;
-	const job = req.query.job;
-	if (name != undefined){
-		let result = findUserByNameAndJob(name, job);
-		result = {user_list: result};
-		res.send(result);
-	}
-	else{
-		res.send(users);
-	}
 });
 
 app.post('/users', (req, res) => {
