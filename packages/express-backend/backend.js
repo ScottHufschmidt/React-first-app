@@ -95,27 +95,23 @@ app.get('/users/:id', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-	console.log(req.body);
     const userToAdd = req.body;
     let result = addUser(userToAdd);
 	if (result === undefined) {
         res.status(404).send('Resource not found.');
     } 
 	else {
-		console.log(result);
         res.status(201).send(result);
     }
 });
 
 app.delete('/users/:id', (req, res) => {
-	console.log(req.params);
 	const userToRemove = req.params;
 	let result = removeUser(userToRemove);
 	if (result === undefined) {
         res.status(404).send('Resource not found.');
     } 
 	else {
-		console.log(result);
         res.status(204).send(result);
     }
 });
